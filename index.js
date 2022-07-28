@@ -21,7 +21,7 @@ let authenticate = function (request, response, next) {
   if (request.headers.authorization) {
     let verify = jwt.verify(
       request.headers.authorization,
-      process.env.SECRET "
+      process.env.SECRET 
     );
     console.log(verify);
     if (verify) {
