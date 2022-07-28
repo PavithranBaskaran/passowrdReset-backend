@@ -4,7 +4,7 @@ const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 const dotenv = require('dotenv').config;
 const cors = require("cors");
-const URL = process.env.DB || 'mongodb+srv://user:user@cluster0.apdks2v.mongodb.net/?retryWrites=true&w=majority';
+const URL = process.env.DB ;
   
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -21,7 +21,7 @@ let authenticate = function (request, response, next) {
   if (request.headers.authorization) {
     let verify = jwt.verify(
       request.headers.authorization,
-      process.env.SECRET || "IFNSLT8px6NzjFPI9jhl"
+      process.env.SECRET "
     );
     console.log(verify);
     if (verify) {
@@ -71,7 +71,7 @@ app.post("/", async function (request, response) {
         //Token
         const token = jwt.sign(
           { id: user._id, username: user.username },
-          process.env.SECRET || "IFNSLT8px6NzjFPI9jhl"
+          process.env.SECRET 
         );
         // console.log(token);
         response.json({
