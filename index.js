@@ -8,8 +8,7 @@ var nodemailer = require("nodemailer");
 var randomstring = require("randomstring");
 
 const URL =
-  process.env.DB ||
-  "mongodb+srv://user:user@cluster0.apdks2v.mongodb.net/?retryWrites=true&w=majority";
+  process.env.DB 
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -146,7 +145,7 @@ app.post("/resetpassword", async function (request, response) {
         service: "gmail",
         auth: {
           user: "testnodemail04@gmail.com",
-          pass: "vkoi jqcf ejsx wvni" || process.env.pass,
+          pass: process.env.pass,
         },
       });
 
