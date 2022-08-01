@@ -24,10 +24,7 @@ app.use(
 let authenticate = function (request, response, next) {
   // console.log(request.headers);
   if (request.headers.authorization) {
-    let verify = jwt.verify(
-      request.headers.authorization,
-      process.env.SECRET || "IFNSLT8px6NzjFPI9jhl"
-    );
+    let verify = jwt.verify(request.headers.authorization, process.env.SECRET);
     console.log(verify);
     if (verify) {
       request.userid = verify.id;
@@ -76,7 +73,7 @@ app.post("/", async function (request, response) {
         //Token
         const token = jwt.sign(
           { id: user._id, username: user.username },
-          process.env.SECRET || "IFNSLT8px6NzjFPI9jhl"
+          process.env.SECRET
         );
         // console.log(token);
         response.json({
@@ -221,12 +218,8 @@ app.post("/reset-password-page", async function (request, response) {
       });
     }
     await db
-    .collection("users")
-    .updateOne(
-      { rString: String },
-      { $unset: { rString:'' } }
-    );
-
+      .collection("users")
+      .updateOne({ rString: String }, { $unset: { rString: "" } });
   } catch (error) {
     console.log(error);
   }
