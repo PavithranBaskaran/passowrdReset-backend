@@ -135,7 +135,7 @@ app.post("/resetpassword", async function (request, response) {
     if (user) {
       let mailid = request.body.email;
       let rString = randomstring.generate(7);
-      let link = "http://localhost:3000/reset-password-page";
+      let link = "https://password-reset-front-end.vercel.app/reset-password-page";
       await db
         .collection("users")
         .updateOne({ email: mailid }, { $set: { rString: rString } });
